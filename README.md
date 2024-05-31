@@ -1,6 +1,8 @@
 # Image Magazine App
 
-[Image Magazine App](image-magazine-app.netlify.app)
+## Hosted on Netlify
+
+You can view the live version of the site [here](https://image-magazine-app.netlify.app).
 
 Welcome to the **Image Filter Magazine App!** This is a single-page application (SPA) built using React.js that allows users to browse and filter through a collection of images fetched from a public API.
 
@@ -44,7 +46,7 @@ These instructions will run this app on your browser using localhost:3000 after 
 2. Include a placeholder text to guide users on how to use the search input.
 3. Include an icon that indicates an input search field
 
-Testing Strategy:
+- Testing Strategy:
 
 1. Unit Test: Ensure that the search input field is rendered correctly
 2. Test user interactions: Verify that users can input text and trigger the search functionality.
@@ -85,7 +87,5 @@ Testing Strategy:
 - Testing Strategy
 
 1. Unit Test to ensure that the Pagination component renders correctly and displays pagination controls with the right function
-
 2. Tested pagination functionality to be sure users can navigate the page smoothly
-
 3. Test edge cases: Check for scenarios such as navigating to the first or last page, as well as handling of invalid page numbers.

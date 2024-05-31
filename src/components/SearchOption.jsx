@@ -16,6 +16,7 @@ const SearchOption = ({ searchInput, setSearchInput }) => {
           placeholder="Search for image ..."
           onChange={handleSearch}
           value={searchInput}
+          aria-label="Search for images"
         />{" "}
         <span>
           <MdOutlineImageSearch className="mt-1 size-7 text-gray-900" />

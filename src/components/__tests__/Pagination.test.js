@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import Pagination from "./Pagination";
+import Pagination from "../../components/Pagination";
 
 test("clicking on page number updates current page", () => {
   let currentPage = 1;

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import SearchOption from "./SearchOption";
+import SearchOption from "../../components/SearchOption";
 
 test("renders search input component", () => {
   const { getByPlaceholderText } = render(

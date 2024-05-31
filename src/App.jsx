@@ -1,9 +1,10 @@
-import "./App.css";
+import "./assets/styles/App.css";
 import React, { useEffect, useState, lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { fetchImages } from "./utils/api";
 import SearchOption from "./components/SearchOption";
-import Pagination from "./UI/Pagination";
-import LoadingSpinner from "./UI/LoadingSpinner";
+import Pagination from "./components/Pagination";
+import LoadingSpinner from "./components/LoadingSpinner";
 const Gallery = lazy(() => import("./components/Gallery"));
 
 function App() {
@@ -15,26 +16,18 @@ function App() {
   // const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
 
-  const fetchImages = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/photos"
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-      const data = await response.json();
-
-      setImages(data);
-
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching images:", error);
-    }
-  };
   useEffect(() => {
-    fetchImages();
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const data = await fetchImages();
+        setImages(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+    fetchData();
   }, []);
 
   const filteredImages = images.filter((image) =>
@@ -54,18 +47,20 @@ function App() {
       <div className="container mx-auto w-full max-w-8xl m-4 c">
         <SearchOption searchInput={search} setSearchInput={setSearch} />
         <Suspense fallback={<LoadingSpinner />}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                isLoading ? (
-                  <LoadingSpinner />
-                ) : (
-                  <Gallery images={currentImages} />
-                )
-              }
-            />
-          </Routes>
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  isLoading ? (
+                    <LoadingSpinner />
+                  ) : (
+                    <Gallery images={currentImages} />
+                  )
+                }
+              />
+            </Routes>
+          </BrowserRouter>
         </Suspense>
         <Pagination
           imagesPerPage={imagesPerPage}
